@@ -70,24 +70,18 @@ def files_to_search(top_dir, extensions, exclude_folders, size_limit):
 
 def walk_files(top_dir, extensions, exclude_folders):
     extensions = extensions or ['']
-    exclude_folders = exclude_folders or ['']
-    extensions = extensions if isinstance(extensions, list) else [extensions]
-    exclude_folders = exclude_folders if isinstance(exclude_folders, list) else [exclude_folders]
+    exclude_folders = exclude_folders or ('')
+    extensions = extensions if isinstance(extensions, tuple) else tuple(extensions)
+    exclude_folders = exclude_folders if isinstance(exclude_folders, tuple) else tuple(exclude_folders)
     """yield up full pathname for each file in tree under top_dir"""
     for dirpath, dirnames, filenames in os.walk(top_dir, topdown=True):
-        for exc in exclude_folders:
-            if exc in dirnames:
-                dirnames.remove(exc)
-                continue
-                
+        dirnames[:] = [d for d in dirnames if d not in exclude_folders]
+        filenames = [f for f in filenames if f.endswith(extensions)]
+        filenames = [f for f in filenames if not f.startswith('~')]
+        
         for fname in filenames:
-            for ext in extensions:
-                if ext != os.path.splitext(fname)[1]:
-                    continue
-                if fname[0] == '~':
-                    continue
-                pathname = os.path.join(dirpath, fname)
-                yield pathname
+            pathname = os.path.join(dirpath, fname)
+            yield pathname
 
 def search_file(filename, pat):
     #Get plain text from each file and search for pat
