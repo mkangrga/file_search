@@ -48,11 +48,11 @@ def search_files(pattern, top_dir, extensions=None,
         try:
             if search_file(file_name, pat):
                 file_list.append(file_name)
-                print(file_name)
+                print('\n      '.join(wrap(file_name, 120)))
         
         except Exception as e:
             if print_errors:
-                msg = '{}'.format('<br>'.join(wrap(file_name, 100)))
+                msg = '{}'.format('<br>'.join(wrap(file_name, 120)))
                 display(HTML('<p style="color:red; padding-left:2em; text-indent:-2em">Error reading: {}</p>'.format(msg)))
     return file_list
 
