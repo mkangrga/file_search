@@ -70,7 +70,9 @@ def files_to_search(top_dir, extensions, exclude_folders, size_limit):
 
 def walk_files(top_dir, extensions, exclude_folders):
     extensions = extensions or ['']
+    exclude_folders = exclude_folders or ['']
     extensions = extensions if isinstance(extensions, list) else [extensions]
+    exclude_folders = exclude_folders if isinstance(exclude_folders, list) else [exclude_folders]
     """yield up full pathname for each file in tree under top_dir"""
     for dirpath, dirnames, filenames in os.walk(top_dir, topdown=True):
         for exc in exclude_folders:
