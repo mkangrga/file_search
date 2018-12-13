@@ -23,11 +23,13 @@ file_search requires:
 Usage
 ~~~~~~~~~~~~
 
-Designed to be used within a Jupyter Notebook::
+Designed to be used within a Jupyter Notebook:
+
+.. code-block:: python
 
     from file_search import search_files
 
-    search_directory = r'C:\Users\{user}\Documents'
+    search_directory = r'C:/Users/{user}/Documents'
     exclude_folders = []
     extensions = ['.xlsx', '.xls', '.docx']
     size_limit = 100
