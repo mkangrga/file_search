@@ -36,8 +36,8 @@ Designed to be used within a Jupyter Notebook:
 
     patterns = '''
     string1
-    string1
-    string1
+    string2
+    string3
     '''
 
     results = search_files(pattern=patterns,
