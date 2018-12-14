@@ -31,7 +31,7 @@ Designed to be used within a Jupyter Notebook:
 
     search_directory = r'C:/Users/{user}/Documents'
     exclude_folders = []
-    extensions = ['.xlsx', '.xls', '.docx']
+    extensions = ['.xlsx', '.xls', '.docx', '.pdf']
     size_limit = 100
 
     patterns = '''
@@ -46,3 +46,16 @@ Designed to be used within a Jupyter Notebook:
                            exclude_folders=exclude_folders,
                            size_limit=size_limit,
                            print_errors=True)
+    
+    
+.. parsed-literal::
+    
+    Searching for regex: (?:string1|string2|string3) in C:/Users/{user}/Documents
+    
+    C:/Users/{user}/Documents/Workbook1.xlsx
+    C:/Users/{user}/Documents/Doc1.docx
+    C:/Users/{user}/Documents/Analysis/Workbook2.xls
+    Error reading: C:/Users/{user}/Documents/Analysis/Workbook3.xlsx
+    C:/Users/{user}/Documents/Analysis/New/Doc2.doc
+    C:/Users/{user}/Documents/Analysis/data.csv
+    C:/Users/{user}/Documents/Temp/New Folder/output.pdf
